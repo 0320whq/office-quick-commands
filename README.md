@@ -90,7 +90,8 @@
 ```
 office-quick-commands/
 ├── manifest.xml          # 加载项清单（指向 GitHub Pages，无需本地服务器）
-├── manifest-local.xml    # 本地调试用清单（指向 localhost:3000，与 manifest.xml 结构一致）
+├── local-only/
+│   └── manifest-local.xml  # 本地调试用清单（指向 localhost:8443，与 manifest.xml 结构一致）
 ├── shortcuts.json         # 键盘快捷键与动作的映射（含 Mac 变体）
 ├── setup.js              # 一键把 manifest.xml 指向你的 GitHub Pages
 ├── publish.js            # 一键校验（语法/JSON/XML/一致性）并 git 发布
@@ -150,7 +151,7 @@ Office 要求本地也走 HTTPS 且证书受信任。
    node server.js
    ```
    访问 https://localhost:3000/src/taskpane.html 确认可正常打开（浏览器提示证书风险属正常）。
-3. **旁加载**：用 **`manifest-local.xml`** 走上面的「上传我的加载项」步骤。
+3. **旁加载**：用 **`local-only/manifest-local.xml`** 走上面的「上传我的加载项」步骤。
    ⚠️ 每次使用加载项前都要先启动 `node server.js`（保持窗口运行）。
 
 ---
@@ -172,7 +173,7 @@ node publish.js           # 校验通过即 git add / commit / push 到 origin
 3. 若需功能区按钮：在 `manifest.xml`（及 `manifest-local.xml`）对应主机的 `<Group>` 中加一个 `<Control xsi:type="Button|Menu">`，`Action` 用 `ExecuteFunction` 并指定 `FunctionName="RibbonXxx"`；再在 `taskpane.js` 的 `RIBBON` 数组中登记 `["RibbonXxx", doXxx]`，`registerActions()` 会自动 `Office.actions.associate("RibbonXxx", wrapRibbon(doXxx))`。
 4. 在 `taskpane.js` 的 `COMMANDS` 数组中补充面板按钮（含 `hosts: ["word"]` / `["excel"]` / `["word","excel"]` 与可选的 `kb`），供命令面板调用与筛选。
 
-> 修改清单后，两个 manifest 必须保持 `FunctionName` 集合一致（`manifest-local.xml` 由 `manifest.xml` 经 URL 替换自动再生，请勿手动分叉）。
+> 修改清单后，两个 manifest 必须保持 `FunctionName` 集合一致（`local-only/manifest-local.xml` 由 `manifest.xml` 经 URL 替换自动再生，请勿手动分叉）。
 
 ---
 
@@ -198,7 +199,7 @@ node publish.js           # 校验通过即 git add / commit / push 到 origin
 
 - **84 commands** across shared, Word-only, and Excel-only categories (see tables above); a sidebar palette filters by the current host.
 - **Deployment without a server**: run `node setup.js` to point `manifest.xml` at your GitHub Pages site, push to GitHub, enable Pages, then sideload `manifest.xml` once.
-- **Local fallback**: `node server.js` + `manifest-local.xml` (needs a trusted localhost HTTPS cert).
+- **Local fallback**: `node server.js` + `local-only/manifest-local.xml` (needs a trusted localhost HTTPS cert).
 - **One-click publish**: `node publish.js` validates JS syntax, `shortcuts.json`, both manifests (XML), and id consistency (KB / RIBBON ↔ shortcuts ↔ ribbon buttons), then optionally pushes to git.
 - **Simplified ↔ Traditional Chinese** conversion uses the bundled `src/lib/opencc-bundle.js` (opencc-js, full offline dictionary, context-aware for polysemous characters).
 - Icons in `assets/` are placeholders; replace with your own 16/32/80 PNGs before distribution.
