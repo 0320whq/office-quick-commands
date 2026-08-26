@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>快捷指令</title>
+
+  <!-- Office JavaScript API -->
+  <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+
+  <link href="taskpane.css" rel="stylesheet" type="text/css" />
+
+  <!-- opencc-js (Simplified<->Traditional, full dictionary). Bundled statically; exposes window.OpenCC. -->
+  <script type="text/javascript" src="lib/opencc-bundle.js"></script>
+  <script type="text/javascript" src="taskpane.js"></script>
+</head>
+
+<body class="ms-font-m">
+  <header class="qc-header">
+    <h1 class="qc-title">快捷指令</h1>
+    <p class="qc-sub" id="host-info">命令面板</p>
+  </header>
+
+  <main class="qc-main">
+    <input id="qc-search" class="qc-search" type="text" placeholder="筛选指令…" autocomplete="off" />
+
+    <div id="qc-list" class="qc-list"><!-- buttons injected by taskpane.js --></div>
+
+    <div id="qc-stats" class="qc-stats" role="status" aria-live="polite"></div>
+
+    <div id="qc-symbols-box" class="qc-symbols-box" hidden>
+      <p class="qc-symbols-label">插入特殊符号（Word）</p>
+      <div id="qc-symbols" class="qc-symbols"><!-- symbol buttons injected by taskpane.js --></div>
+    </div>
+
+    <div id="qc-status" class="qc-status" role="status" aria-live="polite"></div>
+
+    <details class="qc-help">
+      <summary>键盘快捷键</summary>
+      <ul class="qc-kb">
+        <li><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>1</kbd> 打开面板 / <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>2</kbd> 关闭面板</li>
+        <li><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>D</kbd> 插入日期 / <kbd>P</kbd> 导出 PDF（Word+Excel）</li>
+        <li><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>B</kbd> 加粗 / <kbd>I</kbd> 斜体 / <kbd>U</kbd> 下划线</li>
+        <li><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>J</kbd> 标题1（Word）/ <kbd>L</kbd> 项目符号 / <kbd>N</kbd> 编号</li>
+        <li><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>C</kbd> 居中 / <kbd>H</kbd> 突出显示 / <kbd>K</kbd> 清除格式</li>
+        <li><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>W</kbd> 字数统计（Word）/ <kbd>Shift</kbd>+<kbd>U</kbd> 大写（Word）</li>
+        <li><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Q</kbd> 循环填充色（Excel）/ <kbd>A</kbd> 自动调整 / <kbd>T</kbd> 去空格</li>
+        <li><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>F</kbd> 冻结首行 / <kbd>Shift</kbd>+<kbd>F</kbd> 取消冻结</li>
+        <li><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>R</kbd> 插入行 / <kbd>S</kbd> 求和 / <kbd>E</kbd> 升序</li>
+        <li><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>G</kbd> 生成图表 / <kbd>X</kbd> 清除内容 / <kbd>Y</kbd> 按颜色求和</li>
+        <li><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>M</kbd> 合并单元格（Excel）</li>
+      </ul>
+      <p class="qc-help-note">Mac 对应修饰键：<kbd>Ctrl</kbd>+<kbd>Alt</kbd> → <kbd>Command</kbd>+<kbd>Option</kbd>。未列出的命令可在上方搜索后点击执行。</p>
+    </details>
+  </main>
+</body>
+
+</html>

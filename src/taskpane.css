@@ -1,0 +1,215 @@
+:root {
+  --accent: #2563eb;
+  --accent-soft: #eff4ff;
+  --border: #e2e8f0;
+  --text: #1e293b;
+  --muted: #64748b;
+  --ok: #16a34a;
+  --err: #dc2626;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: "Segoe UI", "Microsoft YaHei", system-ui, sans-serif;
+  color: var(--text);
+  background: #ffffff;
+}
+
+.qc-header {
+  padding: 14px 16px 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+.qc-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.qc-sub {
+  margin: 2px 0 0;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.qc-main {
+  padding: 12px 16px 16px;
+}
+
+.qc-search {
+  width: 100%;
+  padding: 8px 10px;
+  font-size: 13px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  outline: none;
+}
+
+.qc-search:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-soft);
+}
+
+.qc-list {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.qc-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  width: 100%;
+  padding: 10px 12px;
+  text-align: left;
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background .12s ease, border-color .12s ease;
+}
+
+.qc-btn:hover {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+}
+
+.qc-btn:active { transform: translateY(1px); }
+
+.qc-btn .qc-name {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.qc-btn .qc-desc {
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.qc-btn .qc-kb {
+  margin-top: 4px;
+  font-size: 11px;
+  color: var(--accent);
+}
+
+.qc-status {
+  margin-top: 12px;
+  min-height: 18px;
+  font-size: 12px;
+}
+
+.qc-stats {
+  margin-top: 10px;
+  padding: 8px 10px;
+  font-size: 12px;
+  color: var(--text);
+  background: var(--accent-soft);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  min-height: 16px;
+}
+
+.qc-symbols-box {
+  margin-top: 12px;
+}
+
+.qc-symbols-label {
+  margin: 0 0 6px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.qc-symbols {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 4px;
+}
+
+.qc-sym {
+  padding: 6px 0;
+  font-size: 14px;
+  text-align: center;
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background .12s ease, border-color .12s ease;
+}
+
+.qc-sym:hover {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+}
+
+.qc-sym:active { transform: translateY(1px); }
+
+.qc-status.ok { color: var(--ok); }
+.qc-status.err { color: var(--err); }
+
+.qc-help {
+  margin-top: 14px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.qc-help summary {
+  cursor: pointer;
+  color: var(--accent);
+}
+
+.qc-kb {
+  margin: 8px 0 0;
+  padding-left: 18px;
+  line-height: 1.8;
+}
+
+.qc-help-note {
+  margin: 8px 0 0;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+kbd {
+  display: inline-block;
+  padding: 1px 5px;
+  font-size: 11px;
+  font-family: Consolas, monospace;
+  background: #f1f5f9;
+  border: 1px solid var(--border);
+  border-bottom-width: 2px;
+  border-radius: 4px;
+  color: var(--text);
+}
+
+/* Eye-comfort mode: softens the task pane background for long sessions */
+.qc-eye-comfort,
+.qc-eye-comfort body {
+  background: #f3ead6 !important;
+}
+.qc-eye-comfort .qc-btn {
+  background: #efe2c6;
+  border-color: #d8c69a;
+}
+.qc-eye-comfort .qc-btn:hover {
+  background: #e7d6b2;
+  border-color: #b89a5e;
+}
+.qc-eye-comfort .qc-sym {
+  background: #efe2c6;
+  border-color: #d8c69a;
+}
+.qc-eye-comfort .qc-stats {
+  background: #e7d6b2;
+}
+.qc-eye-comfort .qc-search {
+  background: #f6efde;
+}

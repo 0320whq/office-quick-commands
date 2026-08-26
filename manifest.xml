@@ -1,0 +1,942 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
+  xmlns:ov="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="TaskPaneApp">
+  <Id>7C4D2F8E-3A1B-4C5D-9E2F-1A6B8C4D2F8E</Id>
+  <Version>1.0.0.0</Version>
+  <ProviderName>快捷指令</ProviderName>
+  <DefaultLocale>zh-CN</DefaultLocale>
+  <DisplayName DefaultValue="快捷指令" />
+  <Description DefaultValue="为 Office 提供常用快捷指令：命令面板、键盘快捷键与一键常用操作（Excel / Word）。" />
+  <IconUrl DefaultValue="https://0320whq.github.io/office-quick-commands/assets/icon-32.png" />
+  <HighResolutionIconUrl DefaultValue="https://0320whq.github.io/office-quick-commands/assets/icon-80.png" />
+  <SupportUrl DefaultValue="https://github.com/" />
+  <AppDomains>
+    <AppDomain>https://0320whq.github.io</AppDomain>
+  </AppDomains>
+  <Hosts>
+    <Host Name="Document" />
+    <Host Name="Workbook" />
+  </Hosts>
+  <DefaultSettings>
+    <SourceLocation DefaultValue="https://0320whq.github.io/office-quick-commands/src/taskpane.html" />
+  </DefaultSettings>
+  <Permissions>ReadWriteDocument</Permissions>
+  <VersionOverrides xmlns="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="VersionOverridesV1_0">
+    <Requirements>
+      <Sets DefaultMinVersion="1.1">
+        <Set Name="ExcelApi" MinVersion="1.9" />
+        <Set Name="WordApi" MinVersion="1.4" />
+      </Sets>
+    </Requirements>
+    <Hosts>
+      <!-- ===================== Word ===================== -->
+      <Host xsi:type="Document">
+        <Runtimes>
+          <Runtime resid="QuickCmd.Url" lifetime="long" />
+        </Runtimes>
+        <DesktopFormFactor>
+          <GetStarted>
+            <Title resid="GetStarted.Title" />
+            <Description resid="GetStarted.Description" />
+            <LearnMoreUrl resid="GetStarted.LearnMoreUrl" />
+          </GetStarted>
+          <FunctionFile resid="QuickCmd.Url" />
+          <ExtensionPoint xsi:type="PrimaryCommandSurface">
+            <OfficeTab id="TabQuickCommands">
+              <Group id="GroupQuick">
+                <Label resid="GroupQuick.Label" />
+                <Icon>
+                  <bt:Image size="16" resid="Icon.16x16" />
+                  <bt:Image size="32" resid="Icon.32x32" />
+                  <bt:Image size="80" resid="Icon.80x80" />
+                </Icon>
+                <Control xsi:type="Button" id="BtnPanel">
+                  <Label resid="BtnPanel.Label" />
+                  <Supertip>
+                    <Title resid="BtnPanel.Label" />
+                    <Description resid="BtnPanel.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.16x16" />
+                    <bt:Image size="32" resid="Icon.32x32" />
+                    <bt:Image size="80" resid="Icon.80x80" />
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>QuickCmdPanel</TaskpaneId>
+                    <SourceLocation resid="QuickCmd.Url" />
+                  </Action>
+                </Control>
+                <Control xsi:type="Button" id="BtnDate">
+                  <Label resid="BtnDate.Label" />
+                  <Supertip>
+                    <Title resid="BtnDate.Label" />
+                    <Description resid="BtnDate.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.16x16" />
+                    <bt:Image size="32" resid="Icon.32x32" />
+                    <bt:Image size="80" resid="Icon.80x80" />
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>RibbonDate</FunctionName>
+                  </Action>
+                </Control>
+                <Control xsi:type="Button" id="BtnBold">
+                  <Label resid="BtnBold.Label" />
+                  <Supertip>
+                    <Title resid="BtnBold.Label" />
+                    <Description resid="BtnBold.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.16x16" />
+                    <bt:Image size="32" resid="Icon.32x32" />
+                    <bt:Image size="80" resid="Icon.80x80" />
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>RibbonBold</FunctionName>
+                  </Action>
+                </Control>
+                <Control xsi:type="Button" id="BtnItalic">
+                  <Label resid="BtnItalic.Label" />
+                  <Supertip>
+                    <Title resid="BtnItalic.Label" />
+                    <Description resid="BtnItalic.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.16x16" />
+                    <bt:Image size="32" resid="Icon.32x32" />
+                    <bt:Image size="80" resid="Icon.80x80" />
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>RibbonItalic</FunctionName>
+                  </Action>
+                </Control>
+                <Control xsi:type="Button" id="BtnUnderline">
+                  <Label resid="BtnUnderline.Label" />
+                  <Supertip>
+                    <Title resid="BtnUnderline.Label" />
+                    <Description resid="BtnUnderline.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.16x16" />
+                    <bt:Image size="32" resid="Icon.32x32" />
+                    <bt:Image size="80" resid="Icon.80x80" />
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>RibbonUnderline</FunctionName>
+                  </Action>
+                </Control>
+                <Control xsi:type="Button" id="BtnHeading1">
+                  <Label resid="BtnHeading1.Label" />
+                  <Supertip>
+                    <Title resid="BtnHeading1.Label" />
+                    <Description resid="BtnHeading1.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.16x16" />
+                    <bt:Image size="32" resid="Icon.32x32" />
+                    <bt:Image size="80" resid="Icon.80x80" />
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>RibbonHeading1</FunctionName>
+                  </Action>
+                </Control>
+                <Control xsi:type="Button" id="BtnBullet">
+                  <Label resid="BtnBullet.Label" />
+                  <Supertip>
+                    <Title resid="BtnBullet.Label" />
+                    <Description resid="BtnBullet.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.16x16" />
+                    <bt:Image size="32" resid="Icon.32x32" />
+                    <bt:Image size="80" resid="Icon.80x80" />
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>RibbonBulletList</FunctionName>
+                  </Action>
+                </Control>
+                <Control xsi:type="Button" id="BtnNumber">
+                  <Label resid="BtnNumber.Label" />
+                  <Supertip>
+                    <Title resid="BtnNumber.Label" />
+                    <Description resid="BtnNumber.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.16x16" />
+                    <bt:Image size="32" resid="Icon.32x32" />
+                    <bt:Image size="80" resid="Icon.80x80" />
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>RibbonNumberList</FunctionName>
+                  </Action>
+                </Control>
+                <Control xsi:type="Button" id="BtnAlignCenter">
+                  <Label resid="BtnAlignCenter.Label" />
+                  <Supertip>
+                    <Title resid="BtnAlignCenter.Label" />
+                    <Description resid="BtnAlignCenter.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.16x16" />
+                    <bt:Image size="32" resid="Icon.32x32" />
+                    <bt:Image size="80" resid="Icon.80x80" />
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>RibbonAlignCenter</FunctionName>
+                  </Action>
+                </Control>
+                <Control xsi:type="Button" id="BtnHighlight">
+                  <Label resid="BtnHighlight.Label" />
+                  <Supertip>
+                    <Title resid="BtnHighlight.Label" />
+                    <Description resid="BtnHighlight.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.16x16" />
+                    <bt:Image size="32" resid="Icon.32x32" />
+                    <bt:Image size="80" resid="Icon.80x80" />
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>RibbonHighlight</FunctionName>
+                  </Action>
+                </Control>
+                <Control xsi:type="Button" id="BtnClear">
+                  <Label resid="BtnClear.Label" />
+                  <Supertip>
+                    <Title resid="BtnClear.Label" />
+                    <Description resid="BtnClear.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.16x16" />
+                    <bt:Image size="32" resid="Icon.32x32" />
+                    <bt:Image size="80" resid="Icon.80x80" />
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>RibbonClear</FunctionName>
+                  </Action>
+                </Control>
+                <Control xsi:type="Button" id="BtnRemoveEmpty">
+                  <Label resid="BtnRemoveEmpty.Label" />
+                  <Supertip>
+                    <Title resid="BtnRemoveEmpty.Label" />
+                    <Description resid="BtnRemoveEmpty.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.16x16" />
+                    <bt:Image size="32" resid="Icon.32x32" />
+                    <bt:Image size="80" resid="Icon.80x80" />
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>RibbonRemoveEmptyLines</FunctionName>
+                  </Action>
+                </Control>
+                <Control xsi:type="Button" id="BtnClearHighlight">
+                  <Label resid="BtnClearHighlight.Label" />
+                  <Supertip>
+                    <Title resid="BtnClearHighlight.Label" />
+                    <Description resid="BtnClearHighlight.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.16x16" />
+                    <bt:Image size="32" resid="Icon.32x32" />
+                    <bt:Image size="80" resid="Icon.80x80" />
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>RibbonRemoveHighlight</FunctionName>
+                  </Action>
+                </Control>
+                <Control xsi:type="Button" id="BtnPdf">
+                  <Label resid="BtnPdf.Label" />
+                  <Supertip>
+                    <Title resid="BtnPdf.Label" />
+                    <Description resid="BtnPdf.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.16x16" />
+                    <bt:Image size="32" resid="Icon.32x32" />
+                    <bt:Image size="80" resid="Icon.80x80" />
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>RibbonExportPdf</FunctionName>
+                  </Action>
+                </Control>
+                <Control xsi:type="Button" id="BtnCount">
+                  <Label resid="BtnCount.Label" />
+                  <Supertip>
+                    <Title resid="BtnCount.Label" />
+                    <Description resid="BtnCount.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.16x16" />
+                    <bt:Image size="32" resid="Icon.32x32" />
+                    <bt:Image size="80" resid="Icon.80x80" />
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>RibbonWordCount</FunctionName>
+                  </Action>
+                </Control>
+              </Group>
+              <Group id="GroupWordMore">
+                <Label resid="GroupWordMore.Label" />
+                <Icon>
+                  <bt:Image size="16" resid="Icon.16x16" />
+                  <bt:Image size="32" resid="Icon.32x32" />
+                  <bt:Image size="80" resid="Icon.80x80" />
+                </Icon>
+                <Control xsi:type="Button" id="BtnDeleteBlank">
+                  <Label resid="BtnDeleteBlank.Label" />
+                  <Supertip><Title resid="BtnDeleteBlank.Label" /><Description resid="BtnDeleteBlank.Tooltip" /></Supertip>
+                  <Icon><bt:Image size="16" resid="Icon.16x16" /><bt:Image size="32" resid="Icon.32x32" /><bt:Image size="80" resid="Icon.80x80" /></Icon>
+                  <Action xsi:type="ExecuteFunction"><FunctionName>RibbonDeleteBlankPages</FunctionName></Action>
+                </Control>
+                <Control xsi:type="Menu" id="BtnBreaks">
+                  <Label resid="BtnBreaks.Label" />
+                  <Supertip><Title resid="BtnBreaks.Label" /><Description resid="BtnBreaks.Tooltip" /></Supertip>
+                  <Icon><bt:Image size="16" resid="Icon.16x16" /><bt:Image size="32" resid="Icon.32x32" /><bt:Image size="80" resid="Icon.80x80" /></Icon>
+                  <Items>
+                    <Item id="BtnPageBreak">
+                      <Label resid="BtnPageBreak.Label" />
+                      <Supertip><Title resid="BtnPageBreak.Label" /><Description resid="BtnPageBreak.Tooltip" /></Supertip>
+                      <Icon><bt:Image size="16" resid="Icon.16x16" /><bt:Image size="32" resid="Icon.32x32" /><bt:Image size="80" resid="Icon.80x80" /></Icon>
+                      <Action xsi:type="ExecuteFunction"><FunctionName>RibbonPageBreak</FunctionName></Action>
+                    </Item>
+                    <Item id="BtnSectionBreak">
+                      <Label resid="BtnSectionBreak.Label" />
+                      <Supertip><Title resid="BtnSectionBreak.Label" /><Description resid="BtnSectionBreak.Tooltip" /></Supertip>
+                      <Icon><bt:Image size="16" resid="Icon.16x16" /><bt:Image size="32" resid="Icon.32x32" /><bt:Image size="80" resid="Icon.80x80" /></Icon>
+                      <Action xsi:type="ExecuteFunction"><FunctionName>RibbonSectionBreak</FunctionName></Action>
+                    </Item>
+                  </Items>
+                </Control>
+                <Control xsi:type="Menu" id="BtnCase">
+                  <Label resid="BtnCase.Label" />
+                  <Supertip><Title resid="BtnCase.Label" /><Description resid="BtnCase.Tooltip" /></Supertip>
+                  <Icon><bt:Image size="16" resid="Icon.16x16" /><bt:Image size="32" resid="Icon.32x32" /><bt:Image size="80" resid="Icon.80x80" /></Icon>
+                  <Items>
+                    <Item id="BtnCaseLower">
+                      <Label resid="BtnCaseLower.Label" />
+                      <Supertip><Title resid="BtnCaseLower.Label" /><Description resid="BtnCaseLower.Tooltip" /></Supertip>
+                      <Icon><bt:Image size="16" resid="Icon.16x16" /><bt:Image size="32" resid="Icon.32x32" /><bt:Image size="80" resid="Icon.80x80" /></Icon>
+                      <Action xsi:type="ExecuteFunction"><FunctionName>RibbonCaseLower</FunctionName></Action>
+                    </Item>
+                    <Item id="BtnCaseTitle">
+                      <Label resid="BtnCaseTitle.Label" />
+                      <Supertip><Title resid="BtnCaseTitle.Label" /><Description resid="BtnCaseTitle.Tooltip" /></Supertip>
+                      <Icon><bt:Image size="16" resid="Icon.16x16" /><bt:Image size="32" resid="Icon.32x32" /><bt:Image size="80" resid="Icon.80x80" /></Icon>
+                      <Action xsi:type="ExecuteFunction"><FunctionName>RibbonCaseTitle</FunctionName></Action>
+                    </Item>
+                    <Item id="BtnCaseSentence">
+                      <Label resid="BtnCaseSentence.Label" />
+                      <Supertip><Title resid="BtnCaseSentence.Label" /><Description resid="BtnCaseSentence.Tooltip" /></Supertip>
+                      <Icon><bt:Image size="16" resid="Icon.16x16" /><bt:Image size="32" resid="Icon.32x32" /><bt:Image size="80" resid="Icon.80x80" /></Icon>
+                      <Action xsi:type="ExecuteFunction"><FunctionName>RibbonCaseSentence</FunctionName></Action>
+                    </Item>
+                    <Item id="BtnCaseToggle">
+                      <Label resid="BtnCaseToggle.Label" />
+                      <Supertip><Title resid="BtnCaseToggle.Label" /><Description resid="BtnCaseToggle.Tooltip" /></Supertip>
+                      <Icon><bt:Image size="16" resid="Icon.16x16" /><bt:Image size="32" resid="Icon.32x32" /><bt:Image size="80" resid="Icon.80x80" /></Icon>
+                      <Action xsi:type="ExecuteFunction"><FunctionName>RibbonCaseToggle</FunctionName></Action>
+                    </Item>
+                  </Items>
+                </Control>
+                <Control xsi:type="Menu" id="BtnTableConvert">
+                  <Label resid="BtnTableConvert.Label" />
+                  <Supertip><Title resid="BtnTableConvert.Label" /><Description resid="BtnTableConvert.Tooltip" /></Supertip>
+                  <Icon><bt:Image size="16" resid="Icon.16x16" /><bt:Image size="32" resid="Icon.32x32" /><bt:Image size="80" resid="Icon.80x80" /></Icon>
+                  <Items>
+                    <Item id="BtnTableToText">
+                      <Label resid="BtnTableToText.Label" />
+                      <Supertip><Title resid="BtnTableToText.Label" /><Description resid="BtnTableToText.Tooltip" /></Supertip>
+                      <Icon><bt:Image size="16" resid="Icon.16x16" /><bt:Image size="32" resid="Icon.32x32" /><bt:Image size="80" resid="Icon.80x80" /></Icon>
+                      <Action xsi:type="ExecuteFunction"><FunctionName>RibbonTableToText</FunctionName></Action>
+                    </Item>
+                    <Item id="BtnTextToTable">
+                      <Label resid="BtnTextToTable.Label" />
+                      <Supertip><Title resid="BtnTextToTable.Label" /><Description resid="BtnTextToTable.Tooltip" /></Supertip>
+                      <Icon><bt:Image size="16" resid="Icon.16x16" /><bt:Image size="32" resid="Icon.32x32" /><bt:Image size="80" resid="Icon.80x80" /></Icon>
+                      <Action xsi:type="ExecuteFunction"><FunctionName>RibbonTextToTable</FunctionName></Action>
+                    </Item>
+                  </Items>
+                </Control>
+                <Control xsi:type="Button" id="BtnEyeComfort">
+                  <Label resid="BtnEyeComfort.Label" />
+                  <Supertip><Title resid="BtnEyeComfort.Label" /><Description resid="BtnEyeComfort.Tooltip" /></Supertip>
+                  <Icon><bt:Image size="16" resid="Icon.16x16" /><bt:Image size="32" resid="Icon.32x32" /><bt:Image size="80" resid="Icon.80x80" /></Icon>
+                  <Action xsi:type="ExecuteFunction"><FunctionName>RibbonEyeComfort</FunctionName></Action>
+                </Control>
+                <Control xsi:type="Button" id="BtnAdvReplace">
+                  <Label resid="BtnAdvReplace.Label" />
+                  <Supertip><Title resid="BtnAdvReplace.Label" /><Description resid="BtnAdvReplace.Tooltip" /></Supertip>
+                  <Icon><bt:Image size="16" resid="Icon.16x16" /><bt:Image size="32" resid="Icon.32x32" /><bt:Image size="80" resid="Icon.80x80" /></Icon>
+                  <Action xsi:type="ExecuteFunction"><FunctionName>RibbonAdvReplace</FunctionName></Action>
+                </Control>
+              </Group>
+              <Group id="GroupWordDoc">
+                <Label resid="GroupWordDoc.Label" />
+                <Icon>
+                  <bt:Image size="16" resid="Icon.16x16" />
+                  <bt:Image size="32" resid="Icon.32x32" />
+                  <bt:Image size="80" resid="Icon.80x80" />
+                </Icon>
+                <Control xsi:type="Button" id="BtnPageNumbers">
+                  <Label resid="BtnPageNumbers.Label" />
+                  <Supertip><Title resid="BtnPageNumbers.Label" /><Description resid="BtnPageNumbers.Tooltip" /></Supertip>
+                  <Icon><bt:Image size="16" resid="Icon.16x16" /><bt:Image size="32" resid="Icon.32x32" /><bt:Image size="80" resid="Icon.80x80" /></Icon>
+                  <Action xsi:type="ExecuteFunction"><FunctionName>RibbonPageNumbers</FunctionName></Action>
+                </Control>
+                <Control xsi:type="Button" id="BtnHeader">
+                  <Label resid="BtnHeader.Label" />
+                  <Supertip><Title resid="BtnHeader.Label" /><Description resid="BtnHeader.Tooltip" /></Supertip>
+                  <Icon><bt:Image size="16" resid="Icon.16x16" /><bt:Image size="32" resid="Icon.32x32" /><bt:Image size="80" resid="Icon.80x80" /></Icon>
+                  <Action xsi:type="ExecuteFunction"><FunctionName>RibbonInsertHeader</FunctionName></Action>
+                </Control>
+                <Control xsi:type="Button" id="BtnFooter">
+                  <Label resid="BtnFooter.Label" />
+                  <Supertip><Title resid="BtnFooter.Label" /><Description resid="BtnFooter.Tooltip" /></Supertip>
+                  <Icon><bt:Image size="16" resid="Icon.16x16" /><bt:Image size="32" resid="Icon.32x32" /><bt:Image size="80" resid="Icon.80x80" /></Icon>
+                  <Action xsi:type="ExecuteFunction"><FunctionName>RibbonInsertFooter</FunctionName></Action>
+                </Control>
+                <Control xsi:type="Button" id="BtnMultiList">
+                  <Label resid="BtnMultiList.Label" />
+                  <Supertip><Title resid="BtnMultiList.Label" /><Description resid="BtnMultiList.Tooltip" /></Supertip>
+                  <Icon><bt:Image size="16" resid="Icon.16x16" /><bt:Image size="32" resid="Icon.32x32" /><bt:Image size="80" resid="Icon.80x80" /></Icon>
+                  <Action xsi:type="ExecuteFunction"><FunctionName>RibbonMultiLevelList</FunctionName></Action>
+                </Control>
+                <Control xsi:type="Button" id="BtnToTrad">
+                  <Label resid="BtnToTrad.Label" />
+                  <Supertip><Title resid="BtnToTrad.Label" /><Description resid="BtnToTrad.Tooltip" /></Supertip>
+                  <Icon><bt:Image size="16" resid="Icon.16x16" /><bt:Image size="32" resid="Icon.32x32" /><bt:Image size="80" resid="Icon.80x80" /></Icon>
+                  <Action xsi:type="ExecuteFunction"><FunctionName>RibbonConvertTrad</FunctionName></Action>
+                </Control>
+                <Control xsi:type="Button" id="BtnToSimp">
+                  <Label resid="BtnToSimp.Label" />
+                  <Supertip><Title resid="BtnToSimp.Label" /><Description resid="BtnToSimp.Tooltip" /></Supertip>
+                  <Icon><bt:Image size="16" resid="Icon.16x16" /><bt:Image size="32" resid="Icon.32x32" /><bt:Image size="80" resid="Icon.80x80" /></Icon>
+                  <Action xsi:type="ExecuteFunction"><FunctionName>RibbonConvertSimp</FunctionName></Action>
+                </Control>
+              </Group>
+            </OfficeTab>
+          </ExtensionPoint>
+        </DesktopFormFactor>
+      </Host>
+      <!-- ===================== Excel ===================== -->
+      <Host xsi:type="Workbook">
+        <Runtimes>
+          <Runtime resid="QuickCmd.Url" lifetime="long" />
+        </Runtimes>
+        <DesktopFormFactor>
+          <GetStarted>
+            <Title resid="GetStarted.Title" />
+            <Description resid="GetStarted.Description" />
+            <LearnMoreUrl resid="GetStarted.LearnMoreUrl" />
+          </GetStarted>
+          <FunctionFile resid="QuickCmd.Url" />
+          <ExtensionPoint xsi:type="PrimaryCommandSurface">
+            <OfficeTab id="TabQuickCommands">
+              <Group id="GroupQuick">
+                <Label resid="GroupQuick.Label" />
+                <Icon>
+                  <bt:Image size="16" resid="Icon.16x16" />
+                  <bt:Image size="32" resid="Icon.32x32" />
+                  <bt:Image size="80" resid="Icon.80x80" />
+                </Icon>
+                <Control xsi:type="Button" id="BtnPanel">
+                  <Label resid="BtnPanel.Label" />
+                  <Supertip>
+                    <Title resid="BtnPanel.Label" />
+                    <Description resid="BtnPanel.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.16x16" />
+                    <bt:Image size="32" resid="Icon.32x32" />
+                    <bt:Image size="80" resid="Icon.80x80" />
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>QuickCmdPanel</TaskpaneId>
+                    <SourceLocation resid="QuickCmd.Url" />
+                  </Action>
+                </Control>
+                <Control xsi:type="Button" id="BtnDate">
+                  <Label resid="BtnDate.Label" />
+                  <Supertip>
+                    <Title resid="BtnDate.Label" />
+                    <Description resid="BtnDate.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.16x16" />
+                    <bt:Image size="32" resid="Icon.32x32" />
+                    <bt:Image size="80" resid="Icon.80x80" />
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>RibbonDate</FunctionName>
+                  </Action>
+                </Control>
+                <Control xsi:type="Button" id="BtnCycle">
+                  <Label resid="BtnCycle.Label" />
+                  <Supertip>
+                    <Title resid="BtnCycle.Label" />
+                    <Description resid="BtnCycle.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.16x16" />
+                    <bt:Image size="32" resid="Icon.32x32" />
+                    <bt:Image size="80" resid="Icon.80x80" />
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>RibbonCycleFill</FunctionName>
+                  </Action>
+                </Control>
+                <Control xsi:type="Button" id="BtnHighlight">
+                  <Label resid="BtnHighlight.Label" />
+                  <Supertip>
+                    <Title resid="BtnHighlight.Label" />
+                    <Description resid="BtnHighlight.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.16x16" />
+                    <bt:Image size="32" resid="Icon.32x32" />
+                    <bt:Image size="80" resid="Icon.80x80" />
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>RibbonHighlight</FunctionName>
+                  </Action>
+                </Control>
+                <Control xsi:type="Button" id="BtnAutoFit">
+                  <Label resid="BtnAutoFit.Label" />
+                  <Supertip>
+                    <Title resid="BtnAutoFit.Label" />
+                    <Description resid="BtnAutoFit.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.16x16" />
+                    <bt:Image size="32" resid="Icon.32x32" />
+                    <bt:Image size="80" resid="Icon.80x80" />
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>RibbonAutoFit</FunctionName>
+                  </Action>
+                </Control>
+                <Control xsi:type="Button" id="BtnFreezeTop">
+                  <Label resid="BtnFreezeTop.Label" />
+                  <Supertip>
+                    <Title resid="BtnFreezeTop.Label" />
+                    <Description resid="BtnFreezeTop.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.16x16" />
+                    <bt:Image size="32" resid="Icon.32x32" />
+                    <bt:Image size="80" resid="Icon.80x80" />
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>RibbonFreezeTopRow</FunctionName>
+                  </Action>
+                </Control>
+                <Control xsi:type="Button" id="BtnUnfreeze">
+                  <Label resid="BtnUnfreeze.Label" />
+                  <Supertip>
+                    <Title resid="BtnUnfreeze.Label" />
+                    <Description resid="BtnUnfreeze.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.16x16" />
+                    <bt:Image size="32" resid="Icon.32x32" />
+                    <bt:Image size="80" resid="Icon.80x80" />
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>RibbonUnfreeze</FunctionName>
+                  </Action>
+                </Control>
+                <Control xsi:type="Button" id="BtnInsertRow">
+                  <Label resid="BtnInsertRow.Label" />
+                  <Supertip>
+                    <Title resid="BtnInsertRow.Label" />
+                    <Description resid="BtnInsertRow.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.16x16" />
+                    <bt:Image size="32" resid="Icon.32x32" />
+                    <bt:Image size="80" resid="Icon.80x80" />
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>RibbonInsertRow</FunctionName>
+                  </Action>
+                </Control>
+                <Control xsi:type="Button" id="BtnSum">
+                  <Label resid="BtnSum.Label" />
+                  <Supertip>
+                    <Title resid="BtnSum.Label" />
+                    <Description resid="BtnSum.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.16x16" />
+                    <bt:Image size="32" resid="Icon.32x32" />
+                    <bt:Image size="80" resid="Icon.80x80" />
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>RibbonSum</FunctionName>
+                  </Action>
+                </Control>
+                <Control xsi:type="Button" id="BtnSortAsc">
+                  <Label resid="BtnSortAsc.Label" />
+                  <Supertip>
+                    <Title resid="BtnSortAsc.Label" />
+                    <Description resid="BtnSortAsc.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.16x16" />
+                    <bt:Image size="32" resid="Icon.32x32" />
+                    <bt:Image size="80" resid="Icon.80x80" />
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>RibbonSortAsc</FunctionName>
+                  </Action>
+                </Control>
+                <Control xsi:type="Button" id="BtnChart">
+                  <Label resid="BtnChart.Label" />
+                  <Supertip>
+                    <Title resid="BtnChart.Label" />
+                    <Description resid="BtnChart.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.16x16" />
+                    <bt:Image size="32" resid="Icon.32x32" />
+                    <bt:Image size="80" resid="Icon.80x80" />
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>RibbonChart</FunctionName>
+                  </Action>
+                </Control>
+                <Control xsi:type="Button" id="BtnTrim">
+                  <Label resid="BtnTrim.Label" />
+                  <Supertip>
+                    <Title resid="BtnTrim.Label" />
+                    <Description resid="BtnTrim.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.16x16" />
+                    <bt:Image size="32" resid="Icon.32x32" />
+                    <bt:Image size="80" resid="Icon.80x80" />
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>RibbonTrim</FunctionName>
+                  </Action>
+                </Control>
+                <Control xsi:type="Button" id="BtnSumColor">
+                  <Label resid="BtnSumColor.Label" />
+                  <Supertip>
+                    <Title resid="BtnSumColor.Label" />
+                    <Description resid="BtnSumColor.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.16x16" />
+                    <bt:Image size="32" resid="Icon.32x32" />
+                    <bt:Image size="80" resid="Icon.80x80" />
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>RibbonSumByColor</FunctionName>
+                  </Action>
+                </Control>
+                <Control xsi:type="Button" id="BtnMerge">
+                  <Label resid="BtnMerge.Label" />
+                  <Supertip>
+                    <Title resid="BtnMerge.Label" />
+                    <Description resid="BtnMerge.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.16x16" />
+                    <bt:Image size="32" resid="Icon.32x32" />
+                    <bt:Image size="80" resid="Icon.80x80" />
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>RibbonMergeCells</FunctionName>
+                  </Action>
+                </Control>
+                <Control xsi:type="Button" id="BtnPdf">
+                  <Label resid="BtnPdf.Label" />
+                  <Supertip>
+                    <Title resid="BtnPdf.Label" />
+                    <Description resid="BtnPdf.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.16x16" />
+                    <bt:Image size="32" resid="Icon.32x32" />
+                    <bt:Image size="80" resid="Icon.80x80" />
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>RibbonExportPdf</FunctionName>
+                  </Action>
+                </Control>
+                <Control xsi:type="Button" id="BtnClear">
+                  <Label resid="BtnClear.Label" />
+                  <Supertip>
+                    <Title resid="BtnClear.Label" />
+                    <Description resid="BtnClear.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.16x16" />
+                    <bt:Image size="32" resid="Icon.32x32" />
+                    <bt:Image size="80" resid="Icon.80x80" />
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>RibbonClear</FunctionName>
+                  </Action>
+                </Control>
+              </Group>
+              <Group id="GroupExcelMore">
+                <Label resid="GroupExcelMore.Label" />
+                <Icon>
+                  <bt:Image size="16" resid="Icon.16x16" />
+                  <bt:Image size="32" resid="Icon.32x32" />
+                  <bt:Image size="80" resid="Icon.80x80" />
+                </Icon>
+                <Control xsi:type="Button" id="BtnFindDup">
+                  <Label resid="BtnFindDup.Label" />
+                  <Supertip><Title resid="BtnFindDup.Label" /><Description resid="BtnFindDup.Tooltip" /></Supertip>
+                  <Icon><bt:Image size="16" resid="Icon.16x16" /><bt:Image size="32" resid="Icon.32x32" /><bt:Image size="80" resid="Icon.80x80" /></Icon>
+                  <Action xsi:type="ExecuteFunction"><FunctionName>RibbonFindDup</FunctionName></Action>
+                </Control>
+                <Control xsi:type="Menu" id="BtnNumFormat">
+                  <Label resid="BtnNumFormat.Label" />
+                  <Supertip><Title resid="BtnNumFormat.Label" /><Description resid="BtnNumFormat.Tooltip" /></Supertip>
+                  <Icon><bt:Image size="16" resid="Icon.16x16" /><bt:Image size="32" resid="Icon.32x32" /><bt:Image size="80" resid="Icon.80x80" /></Icon>
+                  <Items>
+                    <Item id="BtnNumCurrency"><Label resid="BtnNumCurrency.Label" /><Supertip><Title resid="BtnNumCurrency.Label" /><Description resid="BtnNumCurrency.Tooltip" /></Supertip><Icon><bt:Image size="16" resid="Icon.16x16" /><bt:Image size="32" resid="Icon.32x32" /><bt:Image size="80" resid="Icon.80x80" /></Icon><Action xsi:type="ExecuteFunction"><FunctionName>RibbonNumCurrency</FunctionName></Action></Item>
+                    <Item id="BtnNumPercent"><Label resid="BtnNumPercent.Label" /><Supertip><Title resid="BtnNumPercent.Label" /><Description resid="BtnNumPercent.Tooltip" /></Supertip><Icon><bt:Image size="16" resid="Icon.16x16" /><bt:Image size="32" resid="Icon.32x32" /><bt:Image size="80" resid="Icon.80x80" /></Icon><Action xsi:type="ExecuteFunction"><FunctionName>RibbonNumPercent</FunctionName></Action></Item>
+                    <Item id="BtnNumThousands"><Label resid="BtnNumThousands.Label" /><Supertip><Title resid="BtnNumThousands.Label" /><Description resid="BtnNumThousands.Tooltip" /></Supertip><Icon><bt:Image size="16" resid="Icon.16x16" /><bt:Image size="32" resid="Icon.32x32" /><bt:Image size="80" resid="Icon.80x80" /></Icon><Action xsi:type="ExecuteFunction"><FunctionName>RibbonNumThousands</FunctionName></Action></Item>
+                    <Item id="BtnNumDate"><Label resid="BtnNumDate.Label" /><Supertip><Title resid="BtnNumDate.Label" /><Description resid="BtnNumDate.Tooltip" /></Supertip><Icon><bt:Image size="16" resid="Icon.16x16" /><bt:Image size="32" resid="Icon.32x32" /><bt:Image size="80" resid="Icon.80x80" /></Icon><Action xsi:type="ExecuteFunction"><FunctionName>RibbonNumDate</FunctionName></Action></Item>
+                  </Items>
+                </Control>
+                <Control xsi:type="Menu" id="BtnBorders">
+                  <Label resid="BtnBorders.Label" />
+                  <Supertip><Title resid="BtnBorders.Label" /><Description resid="BtnBorders.Tooltip" /></Supertip>
+                  <Icon><bt:Image size="16" resid="Icon.16x16" /><bt:Image size="32" resid="Icon.32x32" /><bt:Image size="80" resid="Icon.80x80" /></Icon>
+                  <Items>
+                    <Item id="BtnAddBorders"><Label resid="BtnAddBorders.Label" /><Supertip><Title resid="BtnAddBorders.Label" /><Description resid="BtnAddBorders.Tooltip" /></Supertip><Icon><bt:Image size="16" resid="Icon.16x16" /><bt:Image size="32" resid="Icon.32x32" /><bt:Image size="80" resid="Icon.80x80" /></Icon><Action xsi:type="ExecuteFunction"><FunctionName>RibbonAddBorders</FunctionName></Action></Item>
+                    <Item id="BtnRemoveBorders"><Label resid="BtnRemoveBorders.Label" /><Supertip><Title resid="BtnRemoveBorders.Label" /><Description resid="BtnRemoveBorders.Tooltip" /></Supertip><Icon><bt:Image size="16" resid="Icon.16x16" /><bt:Image size="32" resid="Icon.32x32" /><bt:Image size="80" resid="Icon.80x80" /></Icon><Action xsi:type="ExecuteFunction"><FunctionName>RibbonRemoveBorders</FunctionName></Action></Item>
+                  </Items>
+                </Control>
+                <Control xsi:type="Menu" id="BtnHide">
+                  <Label resid="BtnHide.Label" />
+                  <Supertip><Title resid="BtnHide.Label" /><Description resid="BtnHide.Tooltip" /></Supertip>
+                  <Icon><bt:Image size="16" resid="Icon.16x16" /><bt:Image size="32" resid="Icon.32x32" /><bt:Image size="80" resid="Icon.80x80" /></Icon>
+                  <Items>
+                    <Item id="BtnHideRows"><Label resid="BtnHideRows.Label" /><Supertip><Title resid="BtnHideRows.Label" /><Description resid="BtnHideRows.Tooltip" /></Supertip><Icon><bt:Image size="16" resid="Icon.16x16" /><bt:Image size="32" resid="Icon.32x32" /><bt:Image size="80" resid="Icon.80x80" /></Icon><Action xsi:type="ExecuteFunction"><FunctionName>RibbonHideRows</FunctionName></Action></Item>
+                    <Item id="BtnUnhideRows"><Label resid="BtnUnhideRows.Label" /><Supertip><Title resid="BtnUnhideRows.Label" /><Description resid="BtnUnhideRows.Tooltip" /></Supertip><Icon><bt:Image size="16" resid="Icon.16x16" /><bt:Image size="32" resid="Icon.32x32" /><bt:Image size="80" resid="Icon.80x80" /></Icon><Action xsi:type="ExecuteFunction"><FunctionName>RibbonUnhideRows</FunctionName></Action></Item>
+                    <Item id="BtnHideCols"><Label resid="BtnHideCols.Label" /><Supertip><Title resid="BtnHideCols.Label" /><Description resid="BtnHideCols.Tooltip" /></Supertip><Icon><bt:Image size="16" resid="Icon.16x16" /><bt:Image size="32" resid="Icon.32x32" /><bt:Image size="80" resid="Icon.80x80" /></Icon><Action xsi:type="ExecuteFunction"><FunctionName>RibbonHideCols</FunctionName></Action></Item>
+                    <Item id="BtnUnhideCols"><Label resid="BtnUnhideCols.Label" /><Supertip><Title resid="BtnUnhideCols.Label" /><Description resid="BtnUnhideCols.Tooltip" /></Supertip><Icon><bt:Image size="16" resid="Icon.16x16" /><bt:Image size="32" resid="Icon.32x32" /><bt:Image size="80" resid="Icon.80x80" /></Icon><Action xsi:type="ExecuteFunction"><FunctionName>RibbonUnhideCols</FunctionName></Action></Item>
+                  </Items>
+                </Control>
+                <Control xsi:type="Button" id="BtnTranspose">
+                  <Label resid="BtnTranspose.Label" />
+                  <Supertip><Title resid="BtnTranspose.Label" /><Description resid="BtnTranspose.Tooltip" /></Supertip>
+                  <Icon><bt:Image size="16" resid="Icon.16x16" /><bt:Image size="32" resid="Icon.32x32" /><bt:Image size="80" resid="Icon.80x80" /></Icon>
+                  <Action xsi:type="ExecuteFunction"><FunctionName>RibbonTranspose</FunctionName></Action>
+                </Control>
+                <Control xsi:type="Button" id="BtnValuesOnly">
+                  <Label resid="BtnValuesOnly.Label" />
+                  <Supertip><Title resid="BtnValuesOnly.Label" /><Description resid="BtnValuesOnly.Tooltip" /></Supertip>
+                  <Icon><bt:Image size="16" resid="Icon.16x16" /><bt:Image size="32" resid="Icon.32x32" /><bt:Image size="80" resid="Icon.80x80" /></Icon>
+                  <Action xsi:type="ExecuteFunction"><FunctionName>RibbonValuesOnly</FunctionName></Action>
+                </Control>
+                <Control xsi:type="Button" id="BtnEyeComfort">
+                  <Label resid="BtnEyeComfort.Label" />
+                  <Supertip><Title resid="BtnEyeComfort.Label" /><Description resid="BtnEyeComfort.Tooltip" /></Supertip>
+                  <Icon><bt:Image size="16" resid="Icon.16x16" /><bt:Image size="32" resid="Icon.32x32" /><bt:Image size="80" resid="Icon.80x80" /></Icon>
+                  <Action xsi:type="ExecuteFunction"><FunctionName>RibbonEyeComfort</FunctionName></Action>
+                </Control>
+                <Control xsi:type="Button" id="BtnAdvReplace">
+                  <Label resid="BtnAdvReplace.Label" />
+                  <Supertip><Title resid="BtnAdvReplace.Label" /><Description resid="BtnAdvReplace.Tooltip" /></Supertip>
+                  <Icon><bt:Image size="16" resid="Icon.16x16" /><bt:Image size="32" resid="Icon.32x32" /><bt:Image size="80" resid="Icon.80x80" /></Icon>
+                  <Action xsi:type="ExecuteFunction"><FunctionName>RibbonAdvReplace</FunctionName></Action>
+                </Control>
+              </Group>
+              <Group id="GroupExcelData">
+                <Label resid="GroupExcelData.Label" />
+                <Icon>
+                  <bt:Image size="16" resid="Icon.16x16" />
+                  <bt:Image size="32" resid="Icon.32x32" />
+                  <bt:Image size="80" resid="Icon.80x80" />
+                </Icon>
+                <Control xsi:type="Button" id="BtnSplit">
+                  <Label resid="BtnSplit.Label" />
+                  <Supertip><Title resid="BtnSplit.Label" /><Description resid="BtnSplit.Tooltip" /></Supertip>
+                  <Icon><bt:Image size="16" resid="Icon.16x16" /><bt:Image size="32" resid="Icon.32x32" /><bt:Image size="80" resid="Icon.80x80" /></Icon>
+                  <Action xsi:type="ExecuteFunction"><FunctionName>RibbonSplitText</FunctionName></Action>
+                </Control>
+                <Control xsi:type="Button" id="BtnGoBlanks">
+                  <Label resid="BtnGoBlanks.Label" />
+                  <Supertip><Title resid="BtnGoBlanks.Label" /><Description resid="BtnGoBlanks.Tooltip" /></Supertip>
+                  <Icon><bt:Image size="16" resid="Icon.16x16" /><bt:Image size="32" resid="Icon.32x32" /><bt:Image size="80" resid="Icon.80x80" /></Icon>
+                  <Action xsi:type="ExecuteFunction"><FunctionName>RibbonGoToBlanks</FunctionName></Action>
+                </Control>
+                <Control xsi:type="Button" id="BtnDataValidation">
+                  <Label resid="BtnDataValidation.Label" />
+                  <Supertip><Title resid="BtnDataValidation.Label" /><Description resid="BtnDataValidation.Tooltip" /></Supertip>
+                  <Icon><bt:Image size="16" resid="Icon.16x16" /><bt:Image size="32" resid="Icon.32x32" /><bt:Image size="80" resid="Icon.80x80" /></Icon>
+                  <Action xsi:type="ExecuteFunction"><FunctionName>RibbonDataValidation</FunctionName></Action>
+                </Control>
+              </Group>
+            </OfficeTab>
+          </ExtensionPoint>
+        </DesktopFormFactor>
+      </Host>
+    </Hosts>
+    <Resources>
+      <bt:Images>
+        <bt:Image id="Icon.16x16" DefaultValue="https://0320whq.github.io/office-quick-commands/assets/icon-16.png" />
+        <bt:Image id="Icon.32x32" DefaultValue="https://0320whq.github.io/office-quick-commands/assets/icon-32.png" />
+        <bt:Image id="Icon.80x80" DefaultValue="https://0320whq.github.io/office-quick-commands/assets/icon-80.png" />
+      </bt:Images>
+      <bt:Urls>
+        <bt:Url id="GetStarted.LearnMoreUrl" DefaultValue="https://go.microsoft.com/fwlink/?LinkId=276812" />
+        <bt:Url id="QuickCmd.Url" DefaultValue="https://0320whq.github.io/office-quick-commands/src/taskpane.html" />
+      </bt:Urls>
+      <bt:ShortStrings>
+        <bt:String id="GetStarted.Title" DefaultValue="欢迎使用快捷指令" />
+        <bt:String id="GroupQuick.Label" DefaultValue="快捷指令" />
+        <bt:String id="BtnPanel.Label" DefaultValue="打开命令面板" />
+        <bt:String id="BtnDate.Label" DefaultValue="插入日期" />
+        <bt:String id="BtnBold.Label" DefaultValue="加粗" />
+        <bt:String id="BtnItalic.Label" DefaultValue="斜体" />
+        <bt:String id="BtnUnderline.Label" DefaultValue="下划线" />
+        <bt:String id="BtnHeading1.Label" DefaultValue="标题 1" />
+        <bt:String id="BtnBullet.Label" DefaultValue="项目符号" />
+        <bt:String id="BtnNumber.Label" DefaultValue="编号列表" />
+        <bt:String id="BtnAlignCenter.Label" DefaultValue="居中" />
+        <bt:String id="BtnHighlight.Label" DefaultValue="突出显示" />
+        <bt:String id="BtnClear.Label" DefaultValue="清除格式" />
+        <bt:String id="BtnCycle.Label" DefaultValue="循环填充色" />
+        <bt:String id="BtnAutoFit.Label" DefaultValue="自动调整" />
+        <bt:String id="BtnFreezeTop.Label" DefaultValue="冻结首行" />
+        <bt:String id="BtnUnfreeze.Label" DefaultValue="取消冻结" />
+        <bt:String id="BtnInsertRow.Label" DefaultValue="插入行" />
+        <bt:String id="BtnSum.Label" DefaultValue="求和" />
+        <bt:String id="BtnSortAsc.Label" DefaultValue="升序排序" />
+        <bt:String id="BtnChart.Label" DefaultValue="生成图表" />
+        <bt:String id="BtnTrim.Label" DefaultValue="去空格" />
+        <bt:String id="BtnSumColor.Label" DefaultValue="按颜色求和" />
+        <bt:String id="BtnMerge.Label" DefaultValue="合并单元格" />
+        <bt:String id="BtnRemoveEmpty.Label" DefaultValue="删除空段落" />
+        <bt:String id="BtnClearHighlight.Label" DefaultValue="清除高亮" />
+        <bt:String id="BtnPdf.Label" DefaultValue="导出 PDF" />
+        <bt:String id="BtnCount.Label" DefaultValue="字数统计" />
+        <bt:String id="GroupWordMore.Label" DefaultValue="Word 增强" />
+        <bt:String id="GroupExcelMore.Label" DefaultValue="Excel 增强" />
+        <bt:String id="BtnDeleteBlank.Label" DefaultValue="删除空白页" />
+        <bt:String id="BtnBreaks.Label" DefaultValue="插入分隔符" />
+        <bt:String id="BtnPageBreak.Label" DefaultValue="分页符" />
+        <bt:String id="BtnSectionBreak.Label" DefaultValue="分节符" />
+        <bt:String id="BtnCase.Label" DefaultValue="大小写转换" />
+        <bt:String id="BtnCaseLower.Label" DefaultValue="转为小写" />
+        <bt:String id="BtnCaseTitle.Label" DefaultValue="标题大小写" />
+        <bt:String id="BtnCaseSentence.Label" DefaultValue="句首大写" />
+        <bt:String id="BtnCaseToggle.Label" DefaultValue="大小写切换" />
+        <bt:String id="BtnTableConvert.Label" DefaultValue="表格转换" />
+        <bt:String id="BtnTableToText.Label" DefaultValue="表格转文本" />
+        <bt:String id="BtnTextToTable.Label" DefaultValue="文本转表格" />
+        <bt:String id="BtnEyeComfort.Label" DefaultValue="护眼模式" />
+        <bt:String id="BtnFindDup.Label" DefaultValue="查找重复值" />
+        <bt:String id="BtnNumFormat.Label" DefaultValue="数字格式" />
+        <bt:String id="BtnNumCurrency.Label" DefaultValue="货币" />
+        <bt:String id="BtnNumPercent.Label" DefaultValue="百分比" />
+        <bt:String id="BtnNumThousands.Label" DefaultValue="千分位" />
+        <bt:String id="BtnNumDate.Label" DefaultValue="日期" />
+        <bt:String id="BtnBorders.Label" DefaultValue="边框" />
+        <bt:String id="BtnAddBorders.Label" DefaultValue="加边框" />
+        <bt:String id="BtnRemoveBorders.Label" DefaultValue="去边框" />
+        <bt:String id="BtnHide.Label" DefaultValue="隐藏/显示" />
+        <bt:String id="BtnHideRows.Label" DefaultValue="隐藏行" />
+        <bt:String id="BtnUnhideRows.Label" DefaultValue="取消隐藏行" />
+        <bt:String id="BtnHideCols.Label" DefaultValue="隐藏列" />
+        <bt:String id="BtnUnhideCols.Label" DefaultValue="取消隐藏列" />
+        <bt:String id="BtnTranspose.Label" DefaultValue="转置" />
+        <bt:String id="BtnValuesOnly.Label" DefaultValue="公式转值" />
+        <bt:String id="GroupWordDoc.Label" DefaultValue="Word 文档" />
+        <bt:String id="GroupExcelData.Label" DefaultValue="Excel 数据" />
+        <bt:String id="BtnPageNumbers.Label" DefaultValue="插入页码" />
+        <bt:String id="BtnHeader.Label" DefaultValue="插入页眉" />
+        <bt:String id="BtnFooter.Label" DefaultValue="插入页脚" />
+        <bt:String id="BtnMultiList.Label" DefaultValue="多级列表" />
+        <bt:String id="BtnToTrad.Label" DefaultValue="转繁体" />
+        <bt:String id="BtnToSimp.Label" DefaultValue="转简体" />
+        <bt:String id="BtnSplit.Label" DefaultValue="文本分列" />
+        <bt:String id="BtnGoBlanks.Label" DefaultValue="定位空值" />
+        <bt:String id="BtnDataValidation.Label" DefaultValue="数据有效性" />
+        <bt:String id="BtnAdvReplace.Label" DefaultValue="高级替换" />
+      </bt:ShortStrings>
+      <bt:LongStrings>
+        <bt:String id="GetStarted.Description" DefaultValue="加载成功。切换到“快捷指令”选项卡即可使用命令面板与一键操作。" />
+        <bt:String id="BtnPanel.Tooltip" DefaultValue="打开快捷指令命令面板（快捷键 Ctrl+Alt+1）。" />
+        <bt:String id="BtnDate.Tooltip" DefaultValue="在当前选区插入日期时间（Ctrl+Alt+D）。" />
+        <bt:String id="BtnBold.Tooltip" DefaultValue="切换选区加粗（Ctrl+Alt+B）。" />
+        <bt:String id="BtnItalic.Tooltip" DefaultValue="切换选区斜体（Ctrl+Alt+I）。" />
+        <bt:String id="BtnUnderline.Tooltip" DefaultValue="切换选区下划线（Ctrl+Alt+U）。" />
+        <bt:String id="BtnHeading1.Tooltip" DefaultValue="将选区设为“标题 1”样式（Ctrl+Alt+J）。" />
+        <bt:String id="BtnBullet.Tooltip" DefaultValue="为选区段落添加/取消项目符号（Ctrl+Alt+L）。" />
+        <bt:String id="BtnNumber.Tooltip" DefaultValue="为选区段落添加/取消编号（Ctrl+Alt+N）。" />
+        <bt:String id="BtnAlignCenter.Tooltip" DefaultValue="段落 / 单元格居中对齐（Ctrl+Alt+C）。" />
+        <bt:String id="BtnHighlight.Tooltip" DefaultValue="高亮当前选区（Ctrl+Alt+H）。" />
+        <bt:String id="BtnClear.Tooltip" DefaultValue="清除当前选区格式（Ctrl+Alt+K）。" />
+        <bt:String id="BtnCycle.Tooltip" DefaultValue="在调色板中循环切换选区填充色（Ctrl+Alt+Q）。" />
+        <bt:String id="BtnAutoFit.Tooltip" DefaultValue="自动调整所选区域列宽与行高（Ctrl+Alt+A）。" />
+        <bt:String id="BtnFreezeTop.Tooltip" DefaultValue="冻结当前工作表首行（Ctrl+Alt+F）。" />
+        <bt:String id="BtnUnfreeze.Tooltip" DefaultValue="取消所有冻结窗格（Ctrl+Alt+Shift+F）。" />
+        <bt:String id="BtnInsertRow.Tooltip" DefaultValue="在当前选区上方插入一行（Ctrl+Alt+R）。" />
+        <bt:String id="BtnSum.Tooltip" DefaultValue="在选区每列下方插入 SUM 公式（Ctrl+Alt+S）。" />
+        <bt:String id="BtnSortAsc.Tooltip" DefaultValue="按第一列对选区升序排序（Ctrl+Alt+E）。" />
+        <bt:String id="BtnChart.Tooltip" DefaultValue="用选区数据生成聚类柱形图（Ctrl+Alt+G）。" />
+        <bt:String id="BtnTrim.Tooltip" DefaultValue="去除选区单元格内首尾及多余空格（Ctrl+Alt+T）。" />
+        <bt:String id="BtnSumColor.Tooltip" DefaultValue="以活动单元格填充色为基准，对全表同色数值求和（Ctrl+Alt+Y）。" />
+        <bt:String id="BtnMerge.Tooltip" DefaultValue="合并所选单元格（Ctrl+Alt+M）。" />
+        <bt:String id="BtnRemoveEmpty.Tooltip" DefaultValue="删除所选（或全文）中的空段落。" />
+        <bt:String id="BtnClearHighlight.Tooltip" DefaultValue="取消所选内容的高亮颜色。" />
+        <bt:String id="BtnPdf.Tooltip" DefaultValue="将当前文档导出为 PDF 并下载（Ctrl+Alt+P）。" />
+        <bt:String id="BtnCount.Tooltip" DefaultValue="统计全文词数与选区字数/字符数（Ctrl+Alt+W）。" />
+        <bt:String id="BtnDeleteBlank.Tooltip" DefaultValue="删除由空段落/分页占位导致的空白页。" />
+        <bt:String id="BtnBreaks.Tooltip" DefaultValue="在光标后插入分页符或分节符。" />
+        <bt:String id="BtnPageBreak.Tooltip" DefaultValue="在光标后插入分页符。" />
+        <bt:String id="BtnSectionBreak.Tooltip" DefaultValue="在光标后插入分节符。" />
+        <bt:String id="BtnCase.Tooltip" DefaultValue="将选区文本在多种大小写间转换。" />
+        <bt:String id="BtnCaseLower.Tooltip" DefaultValue="将选区文本转为小写。" />
+        <bt:String id="BtnCaseTitle.Tooltip" DefaultValue="将选区每个单词首字母大写。" />
+        <bt:String id="BtnCaseSentence.Tooltip" DefaultValue="将选区句首字母大写。" />
+        <bt:String id="BtnCaseToggle.Tooltip" DefaultValue="依据当前大小写在大写/小写间切换。" />
+        <bt:String id="BtnTableConvert.Tooltip" DefaultValue="在表格与文本之间互相转换。" />
+        <bt:String id="BtnTableToText.Tooltip" DefaultValue="将光标所在表格转为制表符分隔的文本。" />
+        <bt:String id="BtnTextToTable.Tooltip" DefaultValue="将所选段落文本转为单列表格。" />
+        <bt:String id="BtnEyeComfort.Tooltip" DefaultValue="切换任务窗格护眼配色（仅影响本面板，状态记忆）。" />
+        <bt:String id="BtnFindDup.Tooltip" DefaultValue="高亮选区中的重复值（保留首个，快捷键 Ctrl+Alt+O）。" />
+        <bt:String id="BtnNumFormat.Tooltip" DefaultValue="为选区快速设置数字格式。" />
+        <bt:String id="BtnNumCurrency.Tooltip" DefaultValue="设为货币格式（¥ 千分位两位小数）。" />
+        <bt:String id="BtnNumPercent.Tooltip" DefaultValue="设为百分比格式。" />
+        <bt:String id="BtnNumThousands.Tooltip" DefaultValue="设为千分位整数格式。" />
+        <bt:String id="BtnNumDate.Tooltip" DefaultValue="设为 yyyy-mm-dd 日期格式。" />
+        <bt:String id="BtnBorders.Tooltip" DefaultValue="为选区添加或去除边框。" />
+        <bt:String id="BtnAddBorders.Tooltip" DefaultValue="为选区添加全边框（Ctrl+Alt+Shift+B）。" />
+        <bt:String id="BtnRemoveBorders.Tooltip" DefaultValue="去除选区所有边框。" />
+        <bt:String id="BtnHide.Tooltip" DefaultValue="隐藏或显示选中的行/列。" />
+        <bt:String id="BtnHideRows.Tooltip" DefaultValue="隐藏选中行。" />
+        <bt:String id="BtnUnhideRows.Tooltip" DefaultValue="取消隐藏选中行。" />
+        <bt:String id="BtnHideCols.Tooltip" DefaultValue="隐藏选中列。" />
+        <bt:String id="BtnUnhideCols.Tooltip" DefaultValue="取消隐藏选中列。" />
+        <bt:String id="BtnTranspose.Tooltip" DefaultValue="将选区转置到其右侧（Ctrl+Alt+Z）。" />
+        <bt:String id="BtnValuesOnly.Tooltip" DefaultValue="将选区公式转为计算值（Ctrl+Alt+V）。" />
+        <bt:String id="BtnPageNumbers.Tooltip" DefaultValue="在每个节的页脚居中插入页码（PAGE 域，Ctrl+Alt+Shift+P）。" />
+        <bt:String id="BtnHeader.Tooltip" DefaultValue="在每个节的页眉插入指定文字（Ctrl+Alt+Shift+H）。" />
+        <bt:String id="BtnFooter.Tooltip" DefaultValue="在每个节的页脚插入指定文字（Ctrl+Alt+Shift+J）。" />
+        <bt:String id="BtnMultiList.Tooltip" DefaultValue="将所选段落设为多级编号（按前导空格分级，Ctrl+Alt+Shift+M）。" />
+        <bt:String id="BtnToTrad.Tooltip" DefaultValue="将选区简体转繁体（常用字，离线，Ctrl+Alt+Shift+T）。" />
+        <bt:String id="BtnToSimp.Tooltip" DefaultValue="将选区繁体转简体（常用字，离线，Ctrl+Alt+Shift+S）。" />
+        <bt:String id="BtnSplit.Tooltip" DefaultValue="按指定分隔符将首列拆分到右侧多列（Ctrl+Alt+Shift+D）。" />
+        <bt:String id="BtnGoBlanks.Tooltip" DefaultValue="选中选区内的所有空白单元格（Ctrl+Alt+Shift+K）。" />
+        <bt:String id="BtnDataValidation.Tooltip" DefaultValue="为选区添加下拉列表数据有效性（Ctrl+Alt+Shift+L）。" />
+        <bt:String id="BtnAdvReplace.Tooltip" DefaultValue="在选区中查找并替换，可选区分大小写 / 全字匹配（Ctrl+Alt+Shift+R）。" />
+      </bt:LongStrings>
+    </Resources>
+  </VersionOverrides>
+  <ExtendedOverrides Url="https://0320whq.github.io/office-quick-commands/shortcuts.json"></ExtendedOverrides>
+</OfficeApp>
