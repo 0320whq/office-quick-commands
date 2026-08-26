@@ -295,7 +295,7 @@ async function doClearFormat() {
     });
   } else if (isExcel()) {
     await Excel.run(async (ctx) => {
-      ctx.workbook.getSelectedRange().clear(Excel.ClearApplyments.formats);
+      ctx.workbook.getSelectedRange().clear(Excel.ClearApplyTo.formats);
       await ctx.sync();
     });
   }
@@ -346,7 +346,7 @@ async function doRemoveHighlight() {
     const range = ctx.document.getSelection();
     range.font.load("highlightColor");
     await ctx.sync();
-    range.font.highlightColor = "No color";
+    range.font.highlightColor = null;
     await ctx.sync();
   });
 }
@@ -501,7 +501,7 @@ async function doCycleFill() {
 async function doClearContents() {
   if (!isExcel()) return;
   await Excel.run(async (ctx) => {
-    ctx.workbook.getSelectedRange().clear(Excel.ClearApplyments.contents);
+    ctx.workbook.getSelectedRange().clear(Excel.ClearApplyTo.contents);
     await ctx.sync();
   });
 }
@@ -825,11 +825,12 @@ async function doTranspose() {
     if (rc === 0 || cc === 0) { setStatus("请先选择要转置的区域", "err"); return; }
     const vals = range.values, fmts = range.numberFormat;
     const startCol = range.columnIndex + cc;
-    const outRange = range.worksheet.getCell(range.rowIndex, startCol).getResizedRange(rc - 1, cc - 1);
+    // Transpose: output is cc rows x rc columns (swapped dimensions)
+    const outRange = range.worksheet.getCell(range.rowIndex, startCol).getResizedRange(cc - 1, rc - 1);
     const newVals = [], newFmts = [];
-    for (let r = 0; r < rc; r++) {
+    for (let r = 0; r < cc; r++) {
       newVals.push([]); newFmts.push([]);
-      for (let c = 0; c < cc; c++) { newVals[r].push(vals[c][r]); newFmts[r].push(fmts[c][r]); }
+      for (let c = 0; c < rc; c++) { newVals[r].push(vals[c][r]); newFmts[r].push(fmts[c][r]); }
     }
     outRange.values = newVals;
     outRange.numberFormat = newFmts;
@@ -1027,8 +1028,9 @@ async function doInsertPageNumbers() {
     await ctx.sync();
     let count = 0;
     sections.items.forEach((sec) => {
-      const footer = sec.getFooter("primary");
-      const para = footer.insertParagraph("", "end");
+      const footer = sec.getFooter(Word.HeaderFooterType.primary);
+      footer.clear();
+      const para = footer.insertParagraph("", Word.InsertLocation.end);
       para.alignment = Word.Alignment.centered;
       para.insertField(Word.FieldType.page, "", "");
       count++;
@@ -1049,7 +1051,7 @@ async function doInsertHeader() {
     await ctx.sync();
     let count = 0;
     sections.items.forEach((sec) => {
-      sec.getHeader("primary").insertParagraph(input, "end");
+      sec.getHeader(Word.HeaderFooterType.primary).insertParagraph(input, Word.InsertLocation.end);
       count++;
     });
     await ctx.sync();
@@ -1068,7 +1070,7 @@ async function doInsertFooter() {
     await ctx.sync();
     let count = 0;
     sections.items.forEach((sec) => {
-      sec.getFooter("primary").insertParagraph(input, "end");
+      sec.getFooter(Word.HeaderFooterType.primary).insertParagraph(input, Word.InsertLocation.end);
       count++;
     });
     await ctx.sync();
@@ -1088,7 +1090,7 @@ async function doMultiLevelList() {
       return p;
     });
     await ctx.sync();
-    const levels = leads.map((p) => Math.min(8, Math.floor((p.text.match(/^[ \t]+/)[0] || "").length / 2)));
+    const levels = leads.map((p) => Math.min(8, Math.floor(((p.text.match(/^[ \t]+/) || [""])[0] || "").length / 2)));
     paras.items.forEach((p) => p.startNewList(Word.ListType.numbered));
     await ctx.sync();
     paras.items.forEach((p, i) => { p.listItem.level = levels[i]; });
