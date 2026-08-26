@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<customUI xmlns="http://schemas.microsoft.com/office/2006/01/customui">
+  <ribbon>
+    <tabs>
+      <tab id="TabQuickCommands" label="快捷指令">
+        <group id="GroupFormat" label="格式">
+          <button id="BtnBold" label="加粗" imageMso="Bold" size="large" onAction="QuickCommands.ToggleBold"/>
+          <button id="BtnItalic" label="斜体" imageMso="Italic" size="large" onAction="QuickCommands.ToggleItalic"/>
+          <button id="BtnUnderline" label="下划线" imageMso="Underline" size="large" onAction="QuickCommands.ToggleUnderline"/>
+          <button id="BtnHighlight" label="高亮" imageMso="TextHighlightColor" size="large" onAction="QuickCommands.ToggleHighlight"/>
+          <button id="BtnClearFormat" label="清除格式" imageMso="ClearFormatting" size="large" onAction="QuickCommands.ClearFormat"/>
+          <button id="BtnClearContents" label="清除内容" imageMso="Delete" size="large" onAction="QuickCommands.ClearContents"/>
+        </group>
+        <group id="GroupAlign" label="对齐">
+          <button id="BtnAlignLeft" label="左对齐" imageMso="AlignLeft" size="large" onAction="QuickCommands.AlignLeft"/>
+          <button id="BtnAlignCenter" label="居中" imageMso="AlignCenter" size="large" onAction="QuickCommands.AlignCenter"/>
+          <button id="BtnAlignRight" label="右对齐" imageMso="AlignRight" size="large" onAction="QuickCommands.AlignRight"/>
+        </group>
+        <group id="GroupInsert" label="插入">
+          <button id="BtnInsertDate" label="日期" imageMso="DateAndTime" size="large" onAction="QuickCommands.InsertDate"/>
+          <button id="BtnInsertRow" label="插入行" imageMso="TableInsertRowsAbove" size="large" onAction="QuickCommands.InsertRow"/>
+          <button id="BtnInsertColumn" label="插入列" imageMso="TableInsertColumnsToTheLeft" size="large" onAction="QuickCommands.InsertColumn"/>
+        </group>
+        <group id="GroupData" label="数据">
+          <button id="BtnSortAsc" label="升序" imageMso="SortAscending" size="large" onAction="QuickCommands.SortAsc"/>
+          <button id="BtnSortDesc" label="降序" imageMso="SortDescending" size="large" onAction="QuickCommands.SortDesc"/>
+          <button id="BtnSum" label="求和" imageMso="AutoSum" size="large" onAction="QuickCommands.SumBelow"/>
+          <button id="BtnAverage" label="平均值" imageMso="FunctionsLogical" size="large" onAction="QuickCommands.AverageBelow"/>
+          <button id="BtnTranspose" label="转置" imageMso="PivotTableMove" size="large" onAction="QuickCommands.TransposeData"/>
+          <button id="BtnFormulaToValue" label="公式转值" imageMso="PasteValues" size="large" onAction="QuickCommands.FormulaToValue"/>
+        </group>
+        <group id="GroupTable" label="表格">
+          <button id="BtnMerge" label="合并" imageMso="MergeCells" size="large" onAction="QuickCommands.MergeCells"/>
+          <button id="BtnUnmerge" label="拆分" imageMso="SplitCells" size="large" onAction="QuickCommands.UnmergeCells"/>
+          <button id="BtnAddBorders" label="加边框" imageMso="BordersAll" size="large" onAction="QuickCommands.AddBorders"/>
+          <button id="BtnRemoveBorders" label="去边框" imageMso="BordersNone" size="large" onAction="QuickCommands.RemoveBorders"/>
+          <button id="BtnConvertToTable" label="转表格" imageMso="ConvertTextToTable" size="large" onAction="QuickCommands.ConvertToTable"/>
+        </group>
+        <group id="GroupView" label="视图">
+          <button id="BtnFreezeTop" label="冻结首行" imageMso="FreezePanes" size="large" onAction="QuickCommands.FreezeTopRow"/>
+          <button id="BtnUnfreeze" label="取消冻结" imageMso="FreezePanes" size="large" onAction="QuickCommands.Unfreeze"/>
+          <button id="BtnAutoFit" label="自动调整" imageMso="ColumnWidth" size="large" onAction="QuickCommands.AutoFit"/>
+          <button id="BtnSelectUsed" label="选中数据区" imageMso="SelectAll" size="large" onAction="QuickCommands.SelectUsedRange"/>
+        </group>
+        <group id="GroupTools" label="工具">
+          <button id="BtnTrim" label="去空格" imageMso="Trim" size="large" onAction="QuickCommands.TrimCells"/>
+          <button id="BtnRemoveEmpty" label="删空白行" imageMso="Delete" size="large" onAction="QuickCommands.RemoveEmptyRows"/>
+          <button id="BtnFindDuplicates" label="查找重复" imageMso="Duplicate" size="large" onAction="QuickCommands.FindDuplicates"/>
+          <button id="BtnRemoveDuplicates" label="去重复" imageMso="RemoveDuplicates" size="large" onAction="QuickCommands.RemoveDuplicates"/>
+          <button id="BtnDataBars" label="数据条" imageMso="ConditionalFormattingDataBars" size="large" onAction="QuickCommands.DataBars"/>
+          <button id="BtnCycleFill" label="循环填充" imageMso="FillColor" size="large" onAction="QuickCommands.CycleFillColor"/>
+        </group>
+        <group id="GroupFormat2" label="数字格式">
+          <button id="BtnCurrency" label="货币" imageMso="Currency" size="large" onAction="QuickCommands.CurrencyFormat"/>
+          <button id="BtnPercent" label="百分比" imageMso="Percent" size="large" onAction="QuickCommands.PercentFormat"/>
+          <button id="BtnThousands" label="千分位" imageMso="Comma" size="large" onAction="QuickCommands.ThousandsFormat"/>
+          <button id="BtnDateFormat" label="日期" imageMso="Date" size="large" onAction="QuickCommands.DateFormat"/>
+        </group>
+        <group id="GroupExport" label="导出">
+          <button id="BtnExportPdf" label="导出PDF" imageMso="FileSaveAsPdfOrXps" size="large" onAction="QuickCommands.ExportPDF"/>
+          <button id="BtnCreateChart" label="图表" imageMso="InsertChart" size="large" onAction="QuickCommands.CreateChart"/>
+        </group>
+      </tab>
+    </tabs>
+  </ribbon>
+</customUI>
