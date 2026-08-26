@@ -109,7 +109,7 @@ function main() {
   }
 
   // 3. XML
-  const xmlFiles = ["manifest.xml", "manifest-local.xml"];
+  const xmlFiles = ["manifest.xml", "local-only/manifest-local.xml"];
   let xmlUnknown = false;
   xmlFiles.forEach((f) => {
     const r = xmlWellFormed(f);
@@ -125,7 +125,7 @@ function main() {
     const RIBBON = grabArray("RIBBON");
     const scIds = sc.actions.map((a) => a.id);
     const manFn = functionNames("manifest.xml");
-    const manFnLocal = functionNames("manifest-local.xml");
+    const manFnLocal = functionNames("local-only/manifest-local.xml");
 
     const scNotKb = scIds.filter((x) => !KB.includes(x) && x !== "KbShow" && x !== "KbHide");
     const kbNoSc = KB.filter((x) => !scIds.includes(x));
