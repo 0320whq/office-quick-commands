@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<customUI xmlns="http://schemas.microsoft.com/office/2006/01/customui">
+  <ribbon>
+    <tabs>
+      <tab id="TabQuickCommands" label="快捷指令">
+        <group id="GroupFormat" label="格式">
+          <button id="BtnBold" label="加粗" imageMso="Bold" size="large" onAction="QuickCommands.ToggleBold"/>
+          <button id="BtnItalic" label="斜体" imageMso="Italic" size="large" onAction="QuickCommands.ToggleItalic"/>
+          <button id="BtnUnderline" label="下划线" imageMso="Underline" size="large" onAction="QuickCommands.ToggleUnderline"/>
+          <button id="BtnHighlight" label="高亮" imageMso="TextHighlightColor" size="large" onAction="QuickCommands.ToggleHighlight"/>
+          <button id="BtnClearFormat" label="清除格式" imageMso="ClearFormatting" size="large" onAction="QuickCommands.ClearFormat"/>
+        </group>
+        <group id="GroupAlign" label="对齐">
+          <button id="BtnAlignLeft" label="左对齐" imageMso="AlignLeft" size="large" onAction="QuickCommands.AlignLeft"/>
+          <button id="BtnAlignCenter" label="居中" imageMso="AlignCenter" size="large" onAction="QuickCommands.AlignCenter"/>
+          <button id="BtnAlignRight" label="右对齐" imageMso="AlignRight" size="large" onAction="QuickCommands.AlignRight"/>
+          <button id="BtnAlignJustify" label="两端对齐" imageMso="Justify" size="large" onAction="QuickCommands.AlignJustify"/>
+        </group>
+        <group id="GroupStyle" label="样式">
+          <button id="BtnHeading1" label="标题 1" imageMso="Heading1" size="large" onAction="QuickCommands.ApplyHeading1"/>
+          <button id="BtnHeading2" label="标题 2" imageMso="Heading2" size="large" onAction="QuickCommands.ApplyHeading2"/>
+          <button id="BtnNormal" label="正文" imageMso="Text" size="large" onAction="QuickCommands.ApplyNormal"/>
+        </group>
+        <group id="GroupList" label="列表">
+          <button id="BtnBullet" label="项目符号" imageMso="Bullets" size="large" onAction="QuickCommands.BulletList"/>
+          <button id="BtnNumbering" label="编号" imageMso="Numbering" size="large" onAction="QuickCommands.NumberList"/>
+          <button id="BtnRemoveList" label="取消列表" imageMso="NumberingRemove" size="large" onAction="QuickCommands.RemoveList"/>
+          <button id="BtnMultiLevel" label="多级列表" imageMso="MultilevelList" size="large" onAction="QuickCommands.MultiLevelList"/>
+        </group>
+        <group id="GroupInsert" label="插入">
+          <button id="BtnInsertDate" label="日期" imageMso="DateAndTime" size="large" onAction="QuickCommands.InsertDate"/>
+          <button id="BtnInsertTable" label="3x3表格" imageMso="Table" size="large" onAction="QuickCommands.InsertTable33"/>
+          <button id="BtnPageBreak" label="分页符" imageMso="PageBreak" size="large" onAction="QuickCommands.InsertPageBreak"/>
+          <button id="BtnSectionBreak" label="分节符" imageMso="SectionBreak" size="large" onAction="QuickCommands.InsertSectionBreak"/>
+        </group>
+        <group id="GroupPage" label="页面">
+          <button id="BtnPageNumbers" label="页码" imageMso="PageNumber" size="large" onAction="QuickCommands.InsertPageNumbers"/>
+          <button id="BtnHeader" label="页眉" imageMso="Header" size="large" onAction="QuickCommands.InsertHeader"/>
+          <button id="BtnFooter" label="页脚" imageMso="Footer" size="large" onAction="QuickCommands.InsertFooter"/>
+          <button id="BtnDeleteBlank" label="删空白页" imageMso="Delete" size="large" onAction="QuickCommands.DeleteBlankPages"/>
+        </group>
+        <group id="GroupTools" label="工具">
+          <button id="BtnWordCount" label="字数统计" imageMso="WordCount" size="large" onAction="QuickCommands.WordCount"/>
+          <button id="BtnUppercase" label="大写" imageMso="ChangeCase" size="large" onAction="QuickCommands.TextToUpper"/>
+          <button id="BtnLowercase" label="小写" imageMso="ChangeCase" size="large" onAction="QuickCommands.TextToLower"/>
+          <button id="BtnExportPdf" label="导出PDF" imageMso="FileSaveAsPdfOrXps" size="large" onAction="QuickCommands.ExportPDF"/>
+        </group>
+        <group id="GroupClean" label="清理">
+          <button id="BtnRemoveEmpty" label="删空段落" imageMso="Delete" size="large" onAction="QuickCommands.RemoveEmptyParagraphs"/>
+          <button id="BtnNormalizeSpaces" label="合并空格" imageMso="Consolidate" size="large" onAction="QuickCommands.NormalizeSpaces"/>
+          <button id="BtnTrim" label="去首尾空" imageMso="Trim" size="large" onAction="QuickCommands.TrimText"/>
+          <button id="BtnTableToText" label="表格转文本" imageMso="ConvertTextToTable" size="large" onAction="QuickCommands.TableToText"/>
+        </group>
+      </tab>
+    </tabs>
+  </ribbon>
+</customUI>
