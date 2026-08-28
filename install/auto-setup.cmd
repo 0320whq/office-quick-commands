@@ -11,8 +11,14 @@ set "WORD_STARTUP=%USERPROFILE%\AppData\Roaming\Microsoft\Word\STARTUP"
 set "EXCEL_STARTUP=%USERPROFILE%\AppData\Roaming\Microsoft\Excel\XLSTART"
 set "TEMPLATES_DIR=%USERPROFILE%\AppData\Roaming\Microsoft\Templates"
 
+:: Clean up broken shell files from previous attempts
+echo Removing any broken shell files from previous attempts...
+del "%WORD_STARTUP%\QuickCommands.dotm" 2>nul
+del "%EXCEL_STARTUP%\QuickCommands.xlam" 2>nul
+
 :: ---- STEP 1: Auto-config registry ----
-echo [1/5] Auto-configuring registry...
+echo.
+echo [1/3] Auto-configuring registry...
 mkdir "%WORD_STARTUP%" 2>nul
 mkdir "%EXCEL_STARTUP%" 2>nul
 
@@ -27,33 +33,17 @@ echo   [OK] Word trusted location
 reg add "HKCU\Software\Microsoft\Office\%OFFICE_VER%\Excel\Security\Trusted Locations\LocQuickCmd" /v Path /t REG_SZ /d "%EXCEL_STARTUP%" /f >nul 2>&1
 echo   [OK] Excel trusted location
 
-:: ---- STEP 2: Copy shell templates ----
+:: ---- STEP 2: Import VBA (the only manual step) ----
 echo.
-echo [2/5] Copying shell templates to STARTUP...
-copy /Y "%SCRIPT_DIR%QuickCommands.dotm" "%WORD_STARTUP%\" >nul 2>&1
-if %errorlevel% neq 0 (
-    echo   [FAIL] QuickCommands.dotm -- copy manually to: %WORD_STARTUP%
-) else (
-    echo   [OK] Word shell: %WORD_STARTUP%\QuickCommands.dotm
-)
-
-copy /Y "%SCRIPT_DIR%QuickCommands.xlam" "%EXCEL_STARTUP%\" >nul 2>&1
-if %errorlevel% neq 0 (
-    echo   [FAIL] QuickCommands.xlam -- copy manually to: %EXCEL_STARTUP%
-) else (
-    echo   [OK] Excel shell: %EXCEL_STARTUP%\QuickCommands.xlam
-)
-
-:: ---- STEP 3: Import VBA (manual step, guided) ----
+echo [2/3] Import VBA macros (one-time, ~90 seconds):
 echo.
-echo [3/5] Import VBA macros (one-time, ~90 seconds):
-echo.
-echo   The only manual step: import the .bas files into Office.
+echo   This is the ONLY manual step. The toolbar will be
+echo   created AUTOMATICALLY when you restart Word/Excel.
 echo.
 echo   === WORD ===
 echo   1. In Word, press Alt+F11 to open VBA editor
-echo   2. Find Normal project on the left, right-click - Import File
-echo   3. Select: %SCRIPT_DIR%word.bas
+echo   2. Find Normal project on the left
+echo   3. Right-click - Import File - Select: %SCRIPT_DIR%word.bas
 echo   4. Press Ctrl+S, then close Word
 echo   5. Come back here and press any key to continue...
 pause >nul
@@ -69,39 +59,18 @@ echo   5. Press Ctrl+S, then close Excel
 echo   6. Come back here and press any key to continue...
 pause >nul
 
-:: ---- STEP 4: Verification ----
+:: ---- STEP 3: Verification ----
 echo.
-echo [4/5] Verifying installation...
+echo [3/3] Verifying installation...
 
-:: Check Word registry
-echo   Checking Word registry...
 reg query "HKCU\Software\Microsoft\Office\%OFFICE_VER%\Word\Security" /v VBAWarnings >nul 2>&1
-if %errorlevel%==0 (echo     [OK] Word macro registry set) else (echo     [FAIL] Word macro registry)
+if %errorlevel%==0 (echo   [OK] Word macro registry set) else (echo   [FAIL] Word macro registry)
 
-:: Check Excel registry
-echo   Checking Excel registry...
 reg query "HKCU\Software\Microsoft\Office\%OFFICE_VER%\Excel\Security" /v VBAWarnings >nul 2>&1
-if %errorlevel%==0 (echo     [OK] Excel macro registry set) else (echo     [FAIL] Excel macro registry)
+if %errorlevel%==0 (echo   [OK] Excel macro registry set) else (echo   [FAIL] Excel macro registry)
 
-:: Check if files exist
-echo   Checking shell files...
-if exist "%WORD_STARTUP%\QuickCommands.dotm" (
-    echo     [OK] QuickCommands.dotm in STARTUP
-) else (
-    echo     [FAIL] QuickCommands.dotm not in STARTUP
-)
-
-if exist "%EXCEL_STARTUP%\QuickCommands.xlam" (
-    echo     [OK] QuickCommands.xlam in STARTUP
-) else (
-    echo     [FAIL] QuickCommands.xlam not in STARTUP
-)
-
-:: Open Word for visual verification
 echo.
-echo [5/5] Opening Word and Excel for visual verification...
-echo   If QuickCommands tab appears, installation is SUCCESSFUL.
-echo   If NOT, the VBA was not imported correctly.
+echo Restarting Word and Excel to verify toolbars appear...
 start "" winword.exe
 timeout /t 3 /nobreak >nul
 start "" excel.exe
@@ -109,8 +78,8 @@ timeout /t 3 /nobreak >nul
 
 echo.
 echo ========================================
-echo  Setup script complete.
-echo  Check Word/Excel for QuickCommands tab.
+echo  Check if QuickCommands toolbar appears
+echo  (floating bar, not ribbon tab)
 echo ========================================
 pause >nul
 exit /b 0
